@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab02</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+	</script>
+	<script>
+		$(document).ready(function(){
+		    $("#hide").click(function(){
+			    if (this.value=="1") {
+			       $("#hide").text("Show");
+			       $("#listaDoZrobienia").hide();
+			       this.value = "2";
+			    } else {
+			       $("#hide").text("Hide");
+			       $("#listaDoZrobienia").show();
+			       this.value = "1";
+			    }
+		    });
+
+		    $("#hide2").click(function(){
+			    if (this.value=="1") {
+			       $("#hide2").text("Show");
+			       $("#listaZrobiona").hide();
+			       this.value = "2";
+			    } else {
+			       $("#hide2").text("Hide");
+			       $("#listaZrobiona").show();
+			       this.value = "1";
+			    }
+		    });
+
+		    $('.listy').on('click', '.listaDoZrobieniaButton',function(){
+		        $("#listaZrobiona").append("<li>"+$(this).closest("li").text()+"<input type='button' value='Jednak nie zrobione' class='listaZrobionychButton'/></li>");
+		        $(this).closest("li").remove();
+		    });
+
+		    $('.listy').on('click', '.listaZrobionychButton',function(){
+		        $("#listaDoZrobienia").append("<li>"+$(this).closest("li").text()+"<input type='button' value='Zrobione' class='listaDoZrobieniaButton'/></li>");
+		        $(this).closest("li").remove();
+		    });
+
+		});
+
+		$(document).ready(function(){
+		  $('.elementListy').mouseenter(function(){
+		    $(this).css("background-color", "pink");
+		  });
+		  $('.elementListy').mouseleave(function(){
+		    $(this).css("background-color", "white");
+		  });
+		});
+	</script>
+</head>
+<body>
+	<h2>Lista rzeczy do zrobienia: </h2>
+	<ol id="listaDoZrobienia" class="listy">
+	  <li class="elementListy">Zrobić zakupy <input type="button" value="Zrobione" class="listaDoZrobieniaButton"/></li>
+	  <li class="elementListy">Umyć samochód <input type="button" value="Zrobione" class="listaDoZrobieniaButton"/></li>
+	  <li class="elementListy">Przygotować się do zajęć <input type="button" value="Zrobione" class="listaDoZrobieniaButton"/></li>
+	</ol> 
+	<button id="hide" value="1">Hide</button>
+
+<br><br><br>
+	<h2>Lista zrobionych rzeczy: </h2>
+	<ol id="listaZrobiona" class="listy">
+	  <li class="elementListy">Zakupy <input type="button" value="Jednak nie zrobione" class="listaZrobionychButton"/></li>
+	  <li class="elementListy">Umyty samochód <input type="button" value="Jednak nie zrobione" class="listaZrobionychButton"/></li>
+	  <li class="elementListy">Przygotowanie do zajęć <input type="button" value="Jednak nie zrobione" class="listaZrobionychButton"/></li>
+	</ol> 
+	<button id="hide2" value="1">Hide</button>
+</body>
+</html>
